@@ -16,10 +16,7 @@
     ],
     "author": "Sertonix",
     "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Sertonix/typed-regexp.git"
-    },
+    "repository": "https://github.com/Sertonix/typed-regexp",
     "devDependencies": {
         "rimraf": "^3.0.2",
         "typescript": "^4.7.4"
