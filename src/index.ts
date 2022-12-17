@@ -9,8 +9,6 @@ export type TypedRegExpExecArray<Groups extends string[] = string[], NamedGroups
     input: InputString;
 };
 
-// IDEA regexp parsing -> automatic Groups and NamedGroups generation
-
 export interface TypedRegExp<
     Groups extends string[] = string[],
     NamedGroups extends { [key: string]: string } = { [key: string]: string },
