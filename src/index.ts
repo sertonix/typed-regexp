@@ -34,7 +34,7 @@ export const TypedRegExp = RegExp as TypedRegExpConstructor;
 
 type RegExpConstructor = typeof RegExp;
 interface TypedRegExpConstructor extends RegExpConstructor {
-    new <Groups extends string[], NamedGroups extends { [key: string]: string }>(): TypedRegExp<[],{},"">;
+    new (): TypedRegExp<[],{},"">;
     new <Groups extends string[], NamedGroups extends { [key: string]: string }>(pattern: string): TypedRegExp<Groups,NamedGroups,"">;
     new <Groups extends string[], NamedGroups extends { [key: string]: string }, FlagCombo extends RegExpFlagCombos>(pattern: string, flags: FlagCombo): TypedRegExp<Groups,NamedGroups,FlagCombo>;
     new <Groups extends string[], NamedGroups extends { [key: string]: string }, FlagCombo extends RegExpFlagCombos>(pattern: TypedRegExp<Groups,NamedGroups,FlagCombo>): TypedRegExp<Groups,NamedGroups,FlagCombo>;
