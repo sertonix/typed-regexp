@@ -1,4 +1,8 @@
-import type {TypedRegExp} from "..";
+import type {
+  TypedRegExp,
+  TypedRegExpMatchArray,
+  TypedRegExpExecArray,
+} from "..";
 
 // --- Tools for testings ---
 type E<A,B> = A extends B ? B extends A ? true : false : false;
