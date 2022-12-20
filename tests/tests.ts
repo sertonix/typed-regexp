@@ -11,11 +11,13 @@ declare const t: <A>( a: A ) => <B>( this: MatchType<A,B> extends true ? void : 
 
 // --- Ensure test system works ---
 e<1,1>();
+e<1|2,1|2>();
 // @ts-expect-error
 e<1,2>();
 // @ts-expect-error
 e<1,1|2>();
 t(2 as const)<2>();
+t(2 as 1|2)<1|2>();
 // @ts-expect-error
 t(2 as const)<1>();
 // @ts-expect-error
