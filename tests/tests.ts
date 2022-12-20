@@ -15,8 +15,6 @@ e<1,1>();
 e<1,2>();
 // @ts-expect-error
 e<1,1|2>();
-// @ts-expect-error
-e<1,2>();
 t(2 as const)<2>();
 // @ts-expect-error
 t(2 as const)<1>();
