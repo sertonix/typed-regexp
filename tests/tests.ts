@@ -27,7 +27,7 @@ t(2 as const)<1|2>();
 
 const match = "".match(/ / as TypedRegExp<["$1","$2"],{some?:"test group",other?:"more"},"">);
 
-t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>|null>(); // TODO why error?
+t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>|null>();
 
 if (match) {
   t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>>();
