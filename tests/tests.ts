@@ -35,7 +35,6 @@ if (match) {
   t(match[1])<"$1">();
   t(match[2])<"$2">();
   t(match[3])<undefined>();
-  t(match.groups)<undefined|{some?:"test group",other?:"more"}>();
   if (match.groups) {
     if (match.groups.some) {
       t(match.groups.some)<"test group">();
@@ -43,8 +42,11 @@ if (match) {
     } else {
       t(match.groups)<{other:"more"}>();
       t(match.groups.other)<"more">();
-      e<keyof typeof match.groups,"other">();
+      e<typeof match.groups,{other:"more"}>();
+      e<keyof typeof match.groups,"other">(); // TODO why error?
     }
+  } else {
+    t(match.groups)<never>();
   }
 } else {
   t(match)<null>();
