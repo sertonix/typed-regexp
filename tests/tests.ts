@@ -25,15 +25,27 @@ t(2 as const)<1|2>();
 
 // --- Tests ---
 
-const match = "".match(/ / as TypedRegExp<["a"],any,"">);
+const match = "".match(/ / as TypedRegExp<["$1","$2"],{some?:"test group",other?:"more"},"">);
 
-t(match)<TypedRegExpMatchArray<["a"],any>|null>();
+t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>|null>(); // TODO why error?
 
 if (match) {
-  t(match)<TypedRegExpMatchArray<["a"],any>>();
+  t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>>();
   t(match[0])<string>();
-  t(match[1])<"a">();
-  t(match[2])<undefined>();
+  t(match[1])<"$1">();
+  t(match[2])<"$2">();
+  t(match[3])<undefined>();
+  t(match.groups)<undefined|{some?:"test group",other?:"more"}>();
+  if (match.groups) {
+    if (match.groups.some) {
+      t(match.groups.some)<"test group">();
+      e<keyof typeof match.groups,"some"|"other">();
+    } else {
+      t(match.groups)<{other:"more"}>();
+      t(match.groups.other)<"more">();
+      e<keyof typeof match.groups,"other">();
+    }
+  }
 } else {
   t(match)<null>();
 }
