@@ -5,7 +5,8 @@
     "main": "build/index.js",
     "types": "build/index.d.ts",
     "scripts": {
-        "build": "rimraf ./build && tsc"
+        "build": "rimraf ./build && tsc",
+        "test": "tsc --project ./tsconfig-test.json"
     },
     "keywords": [
         "regex",
