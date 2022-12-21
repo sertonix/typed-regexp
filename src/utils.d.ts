@@ -3,7 +3,6 @@ export type RegExpFlags = "d"|"g"|"i"|"m"|"u"|"y";
 
 /** A tool to create all possible strings that matches the defined flags */
 export type RegExpFlagCombos<F extends {[key in RegExpFlags]?: boolean} = {}> = FlagCombosGenerator<{[key in RegExpFlags]: boolean} & F>;
-// IDEA force alphabetical order to reduce computation time
 
 /** returns the string keys of an object */
 export type StringKeysOf<T> = Extract<keyof T,string>;
