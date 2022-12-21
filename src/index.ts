@@ -23,6 +23,7 @@ export interface TypedRegExp<
     readonly unicode: HasFlag<FlagCombo,"u">;
     readonly sticky: HasFlag<FlagCombo,"y">;
     readonly flags: SortRegExpFlags<FlagCombo>;
+    // this method is restricted to return a sub type so that the type safety is kept
     compile< NewGroups extends Groups = Groups, NewNamedGroups extends NamedGroups = NamedGroups, NewFlagCombo extends FlagCombo = FlagCombo >(pattern: string, flags?: NewFlagCombo): this & TypedRegExp<NewGroups,NewNamedGroups,NewFlagCombo>;
     [Symbol.match]<InputString extends string, Matches extends boolean = boolean>(string: InputString): If<Matches,TypedRegExpMatchArray<Groups,NamedGroups,InputString>,null>;
     [Symbol.replace](string: string, replaceValue: string): string;
