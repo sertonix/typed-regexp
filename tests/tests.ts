@@ -6,8 +6,8 @@ import type {
 
 // --- Tools for testings ---
 type MatchType<A,B> = [A] extends [B] ? [B] extends [A] ? true : false : false;
-declare const e: <A,B>( this: MatchType<A,B> extends true ? void : {expected:B,got:A} ) => void;
-declare const t: <A>( a: A ) => <B>( this: MatchType<A,B> extends true ? void : {expected:B,got:A} ) => void;
+declare const e: <Got,Expected>( this: MatchType<Got,Expected> extends true ? void : {expected:Expected,got:Got} ) => void;
+declare const t: <Got>( got: Got ) => <Expected>( this: MatchType<Got,Expected> extends true ? void : {expected:Expected,got:Got} ) => void;
 
 // --- Ensure test system works ---
 e<1,1>();
