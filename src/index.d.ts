@@ -31,7 +31,7 @@ export interface TypedRegExp<
     [Symbol.matchAll]<InputString extends string>(str: InputString): IterableIterator<TypedRegExpMatchArray<Groups,NamedGroups,InputString>>;
 }
 
-export const TypedRegExp = RegExp as TypedRegExpConstructor;
+export declare const TypedRegExp: TypedRegExpConstructor;
 
 type RegExpConstructor = typeof RegExp;
 interface TypedRegExpConstructor extends RegExpConstructor {
