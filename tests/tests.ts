@@ -3,27 +3,7 @@ import type {
   TypedRegExpMatchArray,
   TypedRegExpExecArray,
 } from "..";
-
-// --- Tools for testings ---
-type MatchType<A,B> = [A] extends [B] ? [B] extends [A] ? true : false : false;
-declare const e: <Got,Expected>( this: MatchType<Got,Expected> extends true ? void : {expected:Expected,got:Got} ) => void;
-declare const t: <Got>( got: Got ) => <Expected>( this: MatchType<Got,Expected> extends true ? void : {expected:Expected,got:Got} ) => void;
-
-// --- Ensure test system works ---
-e<1,1>();
-e<1|2,1|2>();
-// @ts-expect-error
-e<1,2>();
-// @ts-expect-error
-e<1,1|2>();
-t(2 as const)<2>();
-t(2 as 1|2)<1|2>();
-// @ts-expect-error
-t(2 as const)<1>();
-// @ts-expect-error
-t(2 as const)<1|2>();
-
-// --- Tests ---
+import {e,t} from "./base";
 
 declare const regexp1: TypedRegExp<["$1","$2"],{some?:"test group",other?:"more"},"gdi"|"dim">;
 declare const regexp2: TypedRegExp<["2-$1","2-$2"],{}>;
