@@ -32,7 +32,7 @@ t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>|n
 
 if (match) {
   t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>>();
-    t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"},"">>();
+    t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>>();
   t(match[0])<string>();
   t(match[1])<"$1">();
   t(match[2])<"$2">();
