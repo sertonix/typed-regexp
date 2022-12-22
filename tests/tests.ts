@@ -32,6 +32,7 @@ t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>|n
 
 if (match) {
   t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>>();
+    t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"},"">>();
   t(match[0])<string>();
   t(match[1])<"$1">();
   t(match[2])<"$2">();
@@ -54,4 +55,34 @@ if (match) {
   }
 } else {
   t(match)<null>();
+}
+
+const exec = regexp1.exec("exec string");
+
+t(exec)<TypedRegExpExecArray<["$1","$2"],{some?:"test group",other?:"more"},"exec string">|null>();
+
+if (exec) {
+  t(exec)<TypedRegExpExecArray<["$1","$2"],{some?:"test group",other?:"more"},"exec string">>();
+  t(exec[0])<string>();
+  t(exec[1])<"$1">();
+  t(exec[2])<"$2">();
+  t(exec[3])<undefined>();
+  t(exec.index)<number>();
+  t(exec.input)<"exec string">();
+  t( exec.sort(() => 0) )<typeof exec>();
+  e<keyof typeof exec.groups,"other"|"some">();
+  // TODO fix groups property
+  if (exec.groups) {
+    if (exec.groups.some) {
+      t(exec.groups)<{other?:"more",some:"test group"}|{other:"more",some?:"test group"}>();
+      // t(exec.groups)<{other:"more"|undefined,some:"test group"}>();
+    } else if (exec.groups.other) {
+      t(exec.groups)<{other:"more"}>();
+      // t(exec.groups)<{other:"more",some:undefined}>();
+    } else {
+      // t(exec.groups)<{other:undefined,some:undefined}>();
+    }
+  }
+} else {
+  t(exec)<null>();
 }
