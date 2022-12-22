@@ -7,9 +7,8 @@ As direct dependency: `npm i typed-regexp`
 ```ts
 import { TypedRegExp } from "typed-regexp";
 
-const string = "string to match";
 const regexp = new TypedRegExp<[`{${string}`],{group:"a"|"b"}>("(?<group>[ab])({.*)");
-const match = string.match(regexp);
+const match = "string to match".match(regexp);
 if (match) {
   const namedGroup = match.groups.group;
   // => "a"|"b"
@@ -22,9 +21,8 @@ or as dev dependency: `npm i -D typed-regexp`
 ```ts
 import type { TypedRegExp } from "typed-regexp";
 
-const string = "string to match";
 const regexp = /(?<group>[ab])({.*)/ as TypedRegExp<[`{${string}`],{group:"a"|"b"}>;
-const match = string.match(regexp);
+const match = "string to match".match(regexp);
 if (match) {
   const namedGroup = match.groups.group;
   // => "a"|"b"
