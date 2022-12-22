@@ -19,8 +19,7 @@ t(regexp1.flags)<"di" | "dim" | "dgi" | "dgim">(); // TODO fix SortRegExpFlags w
 if (regexp1.global) t(regexp1.multiline)<true|false>(); // TODO better type gate
 // if (regexp1.global) t(regexp1.multiline)<false>();
 t(regexp1.compile("","gdi"))<TypedRegExp<["$1","$2"],{some?:"test group",other?:"more"},"gdi">>();
-// @ts-expect-error
-regexp1.compile("","u");
+e<Parameters<typeof regexp1.compile>[1],"dim"|"gdi"|undefined>();
 t(regexp1[Symbol.match]("test"))<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"},"test">|null>();
 t(regexp1[Symbol.replace]("",""))<string>();
 t(regexp1[Symbol.replace]("", ( _m: string, _g1: "$1", _g2: "$2", _i: number, _s: string, _g: { some?: "test group", other?: "more" } ) => "" ))<string>();
