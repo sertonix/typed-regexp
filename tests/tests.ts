@@ -14,10 +14,10 @@ t(regexp1.ignoreCase)<true>();
 t(regexp1.multiline)<true|false>();
 t(regexp1.unicode)<false>();
 t(regexp1.sticky)<false>();
-t(regexp1.flags)<"dgi"|"dim">(); // TODO fix SortRegExpFlags with union type
-/* TODO better type gate
-if (regexp1.global) t(regexp1.multiline)<false>();
-*/
+t(regexp1.flags)<"di" | "dim" | "dgi" | "dgim">(); // TODO fix SortRegExpFlags with union type
+// t(regexp1.flags)<"dgi"|"dim">();
+if (regexp1.global) t(regexp1.multiline)<true|false>(); // TODO better type gate
+// if (regexp1.global) t(regexp1.multiline)<false>();
 t(regexp1.compile("","gdi"))<TypedRegExp<["$1","$2"],{some?:"test group",other?:"more"},"gdi">>();
 // @ts-expect-error
 regexp1.compile("","u");
@@ -43,7 +43,7 @@ if (match) {
   // TODO fix groups property
   if (match.groups) {
     if (match.groups.some) {
-      t(match.groups)<{other?:"more",some:"test group"}>();
+      t(match.groups)<{other?:"more",some:"test group"}|{other:"more",some?:"test group"}>();
       // t(match.groups)<{other:"more"|undefined,some:"test group"}>();
     } else if (match.groups.other) {
       t(match.groups)<{other:"more"}>();
