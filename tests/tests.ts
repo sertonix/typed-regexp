@@ -44,21 +44,20 @@ if (match) {
   t(match)<null>();
 }
 
-const exec = regexp1.exec("exec string");
+const exec = regexp2.exec("exec string");
 
-t(exec)<TypedRegExpExecArray<["$1","$2"],{some?:"test group",other?:"more"},"exec string">|null>();
+t(exec)<TypedRegExpExecArray<["2-$1","2-$2"],undefined,"exec string">|null>();
 
 if (exec) {
-  t(exec)<TypedRegExpExecArray<["$1","$2"],{some?:"test group",other?:"more"},"exec string">>();
+  t(exec)<TypedRegExpExecArray<["2-$1","2-$2"],undefined,"exec string">>();
   t(exec[0])<string>();
-  t(exec[1])<"$1">();
-  t(exec[2])<"$2">();
+  t(exec[1])<"2-$1">();
+  t(exec[2])<"2-$2">();
   t(exec[3])<undefined>();
   t(exec.index)<number>();
   t(exec.input)<"exec string">();
   t( exec.sort(() => 0) )<typeof exec>();
-  e<keyof typeof exec.groups,"other"|"some">();
-  t(exec.groups)<{some?:"test group",other?:"more"}>();
+  t(exec.groups)<never>();
 } else {
   t(exec)<null>();
 }
