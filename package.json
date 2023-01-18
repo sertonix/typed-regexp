@@ -1,26 +1,26 @@
 {
-    "name": "typed-regexp",
-    "version": "1.0.3",
-    "description": "Adds type checks for regular expressions.",
-    "main": "src/index.js",
-    "types": "src/index.d.ts",
-    "scripts": {
-        "test": "tsc"
-    },
-    "keywords": [
-        "regex",
-        "regexp",
-        "typesafe",
-        "type-safe",
-        "typescript"
-    ],
-    "author": "Sertonix",
-    "license": "MIT",
-    "repository": "https://github.com/Sertonix/typed-regexp",
-    "devDependencies": {
-        "typescript": "^4.9.4"
-    },
-    "files": [
-        "src/**/*"
-    ]
+  "name": "typed-regexp",
+  "version": "1.0.3",
+  "description": "Adds type checks for regular expressions.",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "test": "tsc"
+  },
+  "keywords": [
+    "regex",
+    "regexp",
+    "typesafe",
+    "type-safe",
+    "typescript"
+  ],
+  "author": "Sertonix",
+  "license": "MIT",
+  "repository": "https://github.com/Sertonix/typed-regexp",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "files": [
+    "src/**/*"
+  ]
 }

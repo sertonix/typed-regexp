@@ -21,8 +21,8 @@ export type NoAlwaysTrueValue<O extends {[k:string]:boolean},T> = {[k in keyof O
 
 /** modified array that fixes return value from the sort function when the type is used in an intersection */
 export interface IntersectedArray<T,S> extends Array<T> {
-    sort(compareFn?: (a: T, b: T) => number): this & S;
-    [n: number]: never; // elements are defined by the intersected array
+  sort(compareFn?: (a: T, b: T) => number): this & S;
+  [n: number]: never; // elements are defined by the intersected array
 }
 
 /** toggle if a substring is in a string */
