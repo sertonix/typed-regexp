@@ -29,7 +29,7 @@ export interface IntersectedArray<T,S> extends Array<T> {
 export type IfIn<String extends string,SubString extends string,True,False=never> = String extends `${string}${SubString}${string}` ? True : False;
 
 /** returns all possible combinations with the given flags */
-export type FlagCombosGenerator<F extends {[k:string]: boolean}> = ValueOf<{[f in StringKeysOf<F> as F[f] extends false ? never : F[f] extends true ? never : f ]-?: `${f|""}${FlagCombosGenerator<Omit<F,f>> extends infer R ? R extends string ? R : "" : ""}` }> | ValueOf<{[f in StringKeysOf<F> as F[f] extends true ? f : never]-?: `${f}${FlagCombosGenerator<Omit<F,f>> extends infer R ? R extends string ? R : "" : ""}` }> | NoAlwaysTrueValue<F,"">;
+export type FlagCombosGenerator<F extends {[k:string]: boolean}> = ValueOf<{[f in StringKeysOf<F>]-?: `${true extends F[f] ? f : ""}${FlagCombosGenerator<Omit<F,f>> extends infer R ? R extends string ? R : "" : ""}` }> | NoAlwaysTrueValue<F,"">;
 
 /** sorts the flag alphabetically */
 export type SortRegExpFlags<FlagCombo extends RegExpFlagCombos> = `${IfIn<FlagCombo,"d","d","">}${IfIn<FlagCombo,"g","g","">}${IfIn<FlagCombo,"i","i","">}${IfIn<FlagCombo,"m","m","">}${IfIn<FlagCombo,"u","u","">}${IfIn<FlagCombo,"y","y","">}`;
