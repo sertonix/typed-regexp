@@ -48,7 +48,7 @@ if (match) {
 
 declare const match2: TypedRegExpMatchArray<[],undefined|{some?:"test group",other?:"more"}>;
 
-t(match2.groups)<{some?:"test group",other?:"more"}|undefined>(); // TODO fix never is ignored
+t(match2.groups)<{some?:"test group",other?:"more"}|undefined>();
 if (match2.groups) {
   t(match2.groups)<{some?:"test group",other?:"more"}>();
 } else {
