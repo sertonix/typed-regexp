@@ -25,7 +25,6 @@ export interface TypedRegExp<
     TNamedGroups extends NamedGroups = NamedGroups,
     TFlagCombo extends RegExpFlagCombos = RegExpFlagCombos,
 > extends RegExp {
-    // IDEA only override if existing in the RegExp interface to support more versions
     exec<TInputString extends string, TMatches extends boolean = boolean>(string: TInputString): If<TMatches,TypedRegExpExecArray<TGroups,TNamedGroups,TInputString>,null>;
     readonly dotAll: HasFlag<TFlagCombo,"d">;
     readonly global: HasFlag<TFlagCombo,"g">;
