@@ -17,7 +17,7 @@ export type HasFlag<FlagCombo extends RegExpFlagCombos,Flag extends RegExpFlags>
 export type ValueOf<T> = T[keyof T];
 
 /** toggle if the object has no true values */
-export type NoAlwaysTrueValue<O extends {[k:string]:boolean},T,F=never> = {[k in keyof O as O[k] extends true ? k : never]:k} extends {[k:string]:never} ? T : F;
+export type NoAlwaysTrueValue<O extends {[k:string]:boolean},T> = {[k in keyof O as O[k] extends true ? k : never]:k} extends {[k:string]:never} ? T : never;
 
 /** modified array that fixes return value from the sort function when the type is used in an intersection */
 export interface IntersectedArray<T,S> extends Array<T> {
