@@ -70,7 +70,6 @@ export interface TypedRegExpString extends Omit<String,"match"|"matchAll"|"repla
 
 declare global {
     interface String {
-        // IDEA add a toggle to apply the modifications to the String class directly
         match<TGroups extends Groups, TNamedGroups extends NamedGroups, TFlagCombo extends RegExpFlagCombos = RegExpFlagCombos, TMatches extends boolean = boolean>(regexp: string | TypedRegExp<TGroups,TNamedGroups,TFlagCombo>): If<TMatches,TypedRegExpMatchArray<TGroups,TNamedGroups>,null>;
         matchAll<TGroups extends Groups, TNamedGroups extends NamedGroups, TFlagCombo extends RegExpFlagCombos<{g:true}> = RegExpFlagCombos<{g:true}>>(regexp: TypedRegExp<TGroups,TNamedGroups,TFlagCombo>): IterableIterator<TypedRegExpMatchArray<TGroups,TNamedGroups>>;
         replace<TGroups extends Groups, TNamedGroups extends NamedGroups, TFlagCombo extends RegExpFlagCombos = RegExpFlagCombos>(searchValue: string | TypedRegExp<TGroups,TNamedGroups,TFlagCombo>, replacer: (substring: string, ...args: [...TGroups,number,string,...(keyof TNamedGroups extends never ? [] : [TNamedGroups])]) => string): string;
