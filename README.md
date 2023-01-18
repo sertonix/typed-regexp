@@ -21,7 +21,7 @@ or as dev dependency: `npm i -D typed-regexp`
 ```ts
 import type { TypedRegExp } from "typed-regexp";
 
-const regexp = /(?<name>[ab])({.*)/ as TypedRegExp<[`{${name}`],{group:"a"|"b"}>;
+const regexp = /(?<name>[ab])({.*)/ as TypedRegExp<[`{${string}`],{name:"a"|"b"}>;
 const match = "string to match".match(regexp);
 if (match) {
   const namedGroup = match.groups.name;
