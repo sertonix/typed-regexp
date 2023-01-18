@@ -8,12 +8,12 @@ import type {
 } from "./utils";
 
 type Groups = string[];
-type NamedGroups = { [key: string]: string };
+type NamedGroups = undefined | { [key: string]: string };
 
 export type TypedRegExpMatchArray<TGroups extends Groups = Groups, TNamedGroups extends NamedGroups = NamedGroups, TInputString extends string = string> = {
     index?: number;
     input?: TInputString;
-    groups: OneNotOptional<TNamedGroups>;
+    groups: TNamedGroups extends undefined ? never : TNamedGroups;
 } & ( [string,...TGroups] & IntersectedArray<string,TypedRegExpMatchArray<TGroups,TNamedGroups,TInputString>> );
 
 export type TypedRegExpExecArray<TGroups extends Groups = Groups, TNamedGroups extends NamedGroups = NamedGroups, TInputString extends string = string> = TypedRegExpMatchArray<TGroups,TNamedGroups,TInputString> & {
@@ -39,7 +39,7 @@ export interface TypedRegExp<
     compile< TNewGroups extends TGroups = TGroups, TNewNamedGroups extends TNamedGroups = TNamedGroups, NewFlagCombo extends TFlagCombo = TFlagCombo >(pattern: string, flags?: NewFlagCombo): this & TypedRegExp<TNewGroups,TNewNamedGroups,NewFlagCombo>;
     [Symbol.match]<TInputString extends string, TMatches extends boolean = boolean>(string: TInputString): If<TMatches,TypedRegExpMatchArray<TGroups,TNamedGroups,TInputString>,null>;
     [Symbol.replace](string: string, replaceValue: string): string;
-    [Symbol.replace](string: string, replacer: (substring: string, ...args: [...TGroups,number,string,...(keyof TNamedGroups extends never ? [] : [TNamedGroups])]) => string): string;
+    [Symbol.replace](string: string, replacer: (substring: string, ...args: [...TGroups,number,string,...(undefined extends TNamedGroups ? [] : [TNamedGroups])]) => string): string;
     [Symbol.matchAll]<TInputString extends string>(str: TInputString): IterableIterator<TypedRegExpMatchArray<TGroups,TNamedGroups,TInputString>>;
 }
 

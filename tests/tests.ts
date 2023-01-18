@@ -6,7 +6,7 @@ import type {
 import {e,t} from "./base";
 
 declare const regexp1: TypedRegExp<["$1","$2"],{some?:"test group",other?:"more"},"gdi"|"dim">;
-declare const regexp2: TypedRegExp<["2-$1","2-$2"],{}>;
+declare const regexp2: TypedRegExp<["2-$1","2-$2"],undefined>;
 
 t(regexp1.dotAll)<true>();
 t(regexp1.global)<true|false>();
@@ -39,18 +39,7 @@ if (match) {
   t(match.input)<undefined|string>();
   t( match.sort(() => 0) )<typeof match>();
   e<keyof typeof match.groups,"other"|"some">();
-  // TODO fix groups property
-  if (match.groups) {
-    if (match.groups.some) {
-      t(match.groups)<{other?:"more",some:"test group"}|{other:"more",some?:"test group"}>();
-      // t(match.groups)<{other:"more"|undefined,some:"test group"}>();
-    } else if (match.groups.other) {
-      t(match.groups)<{other:"more"}>();
-      // t(match.groups)<{other:"more",some:undefined}>();
-    } else {
-      // t(match.groups)<{other:undefined,some:undefined}>();
-    }
-  }
+  t(match.groups)<{some?:"test group",other?:"more"}>;
 } else {
   t(match)<null>();
 }
@@ -69,18 +58,16 @@ if (exec) {
   t(exec.input)<"exec string">();
   t( exec.sort(() => 0) )<typeof exec>();
   e<keyof typeof exec.groups,"other"|"some">();
-  // TODO fix groups property
-  if (exec.groups) {
-    if (exec.groups.some) {
-      t(exec.groups)<{other?:"more",some:"test group"}|{other:"more",some?:"test group"}>();
-      // t(exec.groups)<{other:"more"|undefined,some:"test group"}>();
-    } else if (exec.groups.other) {
-      t(exec.groups)<{other:"more"}>();
-      // t(exec.groups)<{other:"more",some:undefined}>();
-    } else {
-      // t(exec.groups)<{other:undefined,some:undefined}>();
-    }
-  }
+  t(exec.groups)<{some?:"test group",other?:"more"}>();
 } else {
   t(exec)<null>();
+}
+
+declare const match2: TypedRegExpMatchArray<[],undefined|{some?:"test group",other?:"more"}>;
+
+t(match2.groups)<{some?:"test group",other?:"more"}|never>;
+if (match2.groups) {
+  t(match2.groups)<{some?:"test group",other?:"more"}>;
+} else {
+  t(match2.groups)<never>;
 }
