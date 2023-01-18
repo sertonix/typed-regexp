@@ -8,6 +8,7 @@ import {e,t} from "./base";
 declare const regexp1: TypedRegExp<["$1","$2"],{some?:"test group",other?:"more"},"gdi"|"dim">;
 declare const regexp2: TypedRegExp<["2-$1","2-$2"],undefined>;
 
+//  --- TypedRegExp ---
 t(regexp1.dotAll)<true>();
 t(regexp1.global)<true|false>();
 t(regexp1.ignoreCase)<true>();
@@ -25,6 +26,7 @@ t(regexp1[Symbol.replace]("",""))<string>();
 t(regexp1[Symbol.replace]("", ( _m: string, _g1: "$1", _g2: "$2", _i: number, _s: string, _g: { some?: "test group", other?: "more" } ) => "" ))<string>();
 t(regexp2[Symbol.replace]("", ( _m: string, _g1: "2-$1", _g2: "2-$2", _i: number, _s: string ) => "" ))<string>();
 
+//  --- TypedRegExpMatchArray ---
 const match = "".match(regexp1);
 
 t(match)<TypedRegExpMatchArray<["$1","$2"],{some?:"test group",other?:"more"}>|null>();
@@ -44,6 +46,16 @@ if (match) {
   t(match)<null>();
 }
 
+declare const match2: TypedRegExpMatchArray<[],undefined|{some?:"test group",other?:"more"}>;
+
+t(match2.groups)<{some?:"test group",other?:"more"}|undefined>(); // TODO fix never is ignored
+if (match2.groups) {
+  t(match2.groups)<{some?:"test group",other?:"more"}>();
+} else {
+  t(match2.groups)<undefined>();
+}
+
+//  --- TypedRegExpExecArray ---
 const exec = regexp2.exec("exec string");
 
 t(exec)<TypedRegExpExecArray<["2-$1","2-$2"],undefined,"exec string">|null>();
@@ -60,13 +72,4 @@ if (exec) {
   t(exec.groups)<undefined>();
 } else {
   t(exec)<null>();
-}
-
-declare const match2: TypedRegExpMatchArray<[],undefined|{some?:"test group",other?:"more"}>;
-
-t(match2.groups)<{some?:"test group",other?:"more"}|undefined>(); // TODO fix never is ignored
-if (match2.groups) {
-  t(match2.groups)<{some?:"test group",other?:"more"}>();
-} else {
-  t(match2.groups)<undefined>();
 }
