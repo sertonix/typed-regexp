@@ -12,7 +12,7 @@ type NamedGroups = undefined | { [key: string]: string };
 export type TypedRegExpMatchArray<TGroups extends Groups = Groups, TNamedGroups extends NamedGroups = NamedGroups, TInputString extends string = string> = {
     index?: number;
     input?: TInputString;
-    groups: TNamedGroups extends undefined ? never : TNamedGroups;
+    groups: TNamedGroups;
 } & ( [string,...TGroups] & IntersectedArray<string,TypedRegExpMatchArray<TGroups,TNamedGroups,TInputString>> );
 
 export type TypedRegExpExecArray<TGroups extends Groups = Groups, TNamedGroups extends NamedGroups = NamedGroups, TInputString extends string = string> = TypedRegExpMatchArray<TGroups,TNamedGroups,TInputString> & {

@@ -57,16 +57,16 @@ if (exec) {
   t(exec.index)<number>();
   t(exec.input)<"exec string">();
   t( exec.sort(() => 0) )<typeof exec>();
-  t(exec.groups)<never>();
+  t(exec.groups)<undefined>();
 } else {
   t(exec)<null>();
 }
 
 declare const match2: TypedRegExpMatchArray<[],undefined|{some?:"test group",other?:"more"}>;
 
-t(match2.groups)<{some?:"test group",other?:"more"}|never>(); // TODO fix never is ignored
+t(match2.groups)<{some?:"test group",other?:"more"}|undefined>(); // TODO fix never is ignored
 if (match2.groups) {
   t(match2.groups)<{some?:"test group",other?:"more"}>();
 } else {
-  t(match2.groups)<never>();
+  t(match2.groups)<undefined>();
 }
