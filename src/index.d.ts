@@ -1,5 +1,4 @@
 import type {
-  OneNotOptional,
   IntersectedArray,
   RegExpFlagCombos,
   If,

@@ -7,20 +7,11 @@ export type RegExpFlagCombos<F extends {[key in RegExpFlags]?: boolean} = {}> = 
 /** returns the string keys of an object */
 export type StringKeysOf<T> = Extract<keyof T,string>;
 
-/** returns an union type of all the non optional keys */
-export type NonOptionalKeys<T> = { [k in keyof T]-?: undefined extends T[k] ? never : k }[keyof T];
-
-/** returns an union type of all the optional keys */
-export type OptionalKeys<T> = { [k in keyof T]-?: undefined extends T[k] ? k : never }[keyof T];
-
 /** if condition in types */
 export type If<I,T,F> = I extends true ? T : T extends false ? F : T|F;
 
 /** returns true if flag is in the flag combo */
 export type HasFlag<FlagCombo extends RegExpFlagCombos,Flag extends RegExpFlags> = IfIn<FlagCombo,Flag,true,false>;
-
-/** returns the object with at least one property that is not optional */
-export type OneNotOptional<T> = {[K in keyof T]-?: {[OK in Exclude<OptionalKeys<T>,K>]+?:Exclude<T[OK],undefined>} & {[NOK in NonOptionalKeys<T>|K]-?:Exclude<T[NOK],undefined>} }[keyof T];
 
 /** returns all values of an object */
 export type ValueOf<T> = T[keyof T];
