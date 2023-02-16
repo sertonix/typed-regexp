@@ -16,7 +16,7 @@
   ],
   "author": "Sertonix",
   "license": "MIT",
-  "repository": "https://github.com/Sertonix/typed-regexp",
+  "repository": "https://codeberg.org/Sertonix/typed-regexp",
   "devDependencies": {
     "typescript": "^4.9.4"
   },
