@@ -1,4 +1,4 @@
-# [typed-regexp](https://codeberg.org/Sertonix/typed-regexp)
+# typed-regexp
 A typescript package that strongly restricts types of regular expressions.
 
 ## Examples
@@ -30,3 +30,9 @@ if (match) {
   // => `{${string}`
 }
 ```
+
+## Links
+
+- [Codeberg](https://codeberg.org/Sertonix/typed-regexp) (main repo)
+- [Github](https://github.com/Sertonix/typed-regexp) (only mirror)
+- [npm](https://www.npmjs.com/package/typed-regexp)
