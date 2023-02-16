@@ -1,4 +1,4 @@
-# typed-regexp
+# [typed-regexp](https://codeberg.org/Sertonix/typed-regexp)
 A typescript package that strongly restricts types of regular expressions.
 
 ## Examples
